@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
+import { BackgroundImage } from "../styles/BackgroundImage";
 
 const MenuItemWrapper = styled.div`
   position: relative;
@@ -16,6 +17,10 @@ const MenuItemWrapper = styled.div`
   transition: all .3s ease-in-out;
   &:last-child{
     height: 50rem;
+  }
+  &:nth-child(1),
+  &:nth-child(2) {
+    height: 80rem;
   }
   &:hover{
     cursor: pointer;
@@ -58,21 +63,15 @@ const Subtitle = styled.span`
   color: #555555;
 `;
 
-const BackgroundImage = styled.div`
+const BackgroundImageAbsolute = styled(BackgroundImage)`
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background-position: center;
-  background-size: cover;
-  transition: transform 1s ease;
-`; 
+`;
+
 
 const MenuDashBoardItem = ({title, imageURL, urlParam, history, match}) => (
 
   <MenuItemWrapper onClick={() => history.push(`${match.url}${urlParam}`)}>
-    <BackgroundImage style={{
-    backgroundImage: `url(${imageURL})`
-  }}/>
+    <BackgroundImageAbsolute imageURL={imageURL}/>
     <InfoWrapper>
       <Title>{title}</Title>
       <Subtitle className="subtitle">SHOP NOW</Subtitle>

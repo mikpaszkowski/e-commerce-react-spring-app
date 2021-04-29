@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Directory from "../../components/directory";
+import Directory from "../components/directory";
 
 const HomepageWrapperr = styled.div`
   background-color: ${(props) => props.theme.primaryColor};

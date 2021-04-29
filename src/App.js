@@ -1,6 +1,6 @@
 import React from "react";
-import HomePage from "./pages/homepage/homepage.component";
-import CapsPage from "./components/caps-page";
+import HomePage from "./pages/homepage";
+import ShopListPage from "./pages/shop-list-page";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { lightTheme } from "./styles/style";
 import { Switch, Route } from "react-router-dom";
@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: ${(props) => props.theme.fontFamiliy};
     color: ${(props) => props.theme.primaryFontColor};
     margin: 0;
-    padding: 2rem;
+    padding: 2rem 10rem;
   }
   *{
     box-sizing: border-box;
@@ -26,6 +26,7 @@ function App() {
         <GlobalStyle />
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route path="/shop" component={ShopListPage}/>
         </Switch>
       </React.Fragment>
     </ThemeProvider>
