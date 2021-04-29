@@ -1,24 +1,25 @@
 import React from "react";
 import styled from "styled-components";
+import { withRouter } from "react-router-dom";
 
 const MenuItemWrapper = styled.div`
   position: relative;
   overflow: hidden;
   min-width: 35rem;
-  height: 24rem;
+  height: 35rem;
   flex: 1 1 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   border: .1rem solid black;
   margin: 0 .7rem 1.5rem;
- 
   transition: all .3s ease-in-out;
-
+  &:last-child{
+    height: 50rem;
+  }
   &:hover{
     cursor: pointer;
   }
-
   &:hover > div:nth-child(2) {
     opacity: .9;
   }
@@ -63,11 +64,12 @@ const BackgroundImage = styled.div`
   height: 100%;
   background-position: center;
   background-size: cover;
-  transition: transform .3s ease;
+  transition: transform 1s ease;
 `; 
 
-const MenuDashBoardItem = ({title, imageURL}) => (
-  <MenuItemWrapper>
+const MenuDashBoardItem = ({title, imageURL, urlParam, history, match}) => (
+
+  <MenuItemWrapper onClick={() => history.push(`${match.url}${urlParam}`)}>
     <BackgroundImage style={{
     backgroundImage: `url(${imageURL})`
   }}/>
@@ -80,4 +82,4 @@ const MenuDashBoardItem = ({title, imageURL}) => (
 
 
 
-export default MenuDashBoardItem;
+export default withRouter(MenuDashBoardItem);
