@@ -7,7 +7,7 @@ const DirectoryWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 0 7rem;
+  padding: 0;
 `;
 
 class Directory extends React.Component {

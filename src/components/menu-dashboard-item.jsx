@@ -15,6 +15,8 @@ const MenuItemWrapper = styled.div`
   border: .1rem solid black;
   margin: 0 .7rem 1.5rem;
   transition: all .3s ease-in-out;
+
+
   &:last-child{
     height: 50rem;
   }
@@ -31,6 +33,13 @@ const MenuItemWrapper = styled.div`
 
   &:hover > div:first-child {
     transform: scale(1.04);
+  }
+
+  &:first-child{
+    min-width: 42rem;
+  }
+  &:nth-child(2){
+    min-width: 42rem;
   }
 
 `;

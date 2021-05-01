@@ -1,6 +1,7 @@
 import React from "react";
 import HomePage from "./pages/homepage";
 import ShopListPage from "./pages/shop-list-page";
+import Header from "./components/header";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { lightTheme } from "./styles/style";
 import { Switch, Route } from "react-router-dom";
@@ -24,6 +25,7 @@ function App() {
     <ThemeProvider theme={lightTheme}>
       <React.Fragment>
         <GlobalStyle />
+        <Header/>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopListPage}/>
