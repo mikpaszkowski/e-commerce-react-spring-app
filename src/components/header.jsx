@@ -11,6 +11,10 @@ const HeaderWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     margin: 5rem 0;
+    padding-bottom: 1rem;
+    border-bottom-width: 1px;
+    border-bottom-color: ${props => props.theme.inputBorderColor};
+    border-bottom-style: solid;
 `;
 
 const LinkContainer = styled(Link)`

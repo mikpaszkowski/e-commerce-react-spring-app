@@ -2,6 +2,7 @@ import React from "react";
 import HomePage from "./pages/homepage";
 import ShopListPage from "./pages/shop-list-page";
 import Header from "./components/header";
+import AuthenticationPage from "./pages/authentication-page";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { lightTheme } from "./styles/style";
 import { Switch, Route } from "react-router-dom";
@@ -29,6 +30,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopListPage}/>
+          <Route path="/auth" component={AuthenticationPage}/>
         </Switch>
       </React.Fragment>
     </ThemeProvider>
