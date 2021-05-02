@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const FormButton = styled.button`
+    position: relative;
     width: 100%;
     height: 6rem;
     margin-top: 5rem;
@@ -14,7 +15,7 @@ const FormButton = styled.button`
     border: none;
 
     &:hover{
-        background-color: #2f2f2f;
+        background-color: ${props => props.color ? props.color : props.theme.hoverDeafultBtnColor};
     }
 `;
 
