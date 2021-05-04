@@ -27,7 +27,7 @@ export const darkTheme: DefaultTheme = {
 
 export const lightTheme: DefaultTheme = {
     primaryColor: "#ffffff",
-    secondaryColor: "#ecf0f1",
+    secondaryColor: "#f3f3f5",
     primaryFontColor: "#353535",
     secondaryFontColor: "#aaaaab",
     btnDefaultColor: "#000000",

@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const ShopListPageContainer = styled.div`
   display: block;
+  margin-top: 15rem;
 `;
 
 

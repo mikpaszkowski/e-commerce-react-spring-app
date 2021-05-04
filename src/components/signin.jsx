@@ -1,8 +1,11 @@
 import React from "react";
 import InputForm from "./input-form";
+import { auth } from "../firebase/firebase.utils";
 import styled from "styled-components";
 import LinkBtn from "../styles/LinkButton";
 import CustomButton from "./custom-button";
+import Form from "../styles/Form";
+import useCustomForm from "../custom-hooks/useCustomForm"
 import {
   signInWithGoogle,
   signInWithFacebook,
@@ -11,16 +14,15 @@ import { AiFillFacebook } from "react-icons/ai";
 import { AiOutlineGoogle } from "react-icons/ai";
 import colors from "../styles/colors";
 
+const SignInWrapper = styled.div`
+  width: 50%;
+  padding-top: 5rem;
+`;
+
 const Headline = styled.h1`
   font-size: 3rem;
   font-weight: 500;
   text-align: center;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 `;
 
 const SocialMediaBtns = styled.div`
@@ -61,46 +63,42 @@ const FacebookBtn = styled(CustomButton)`
     }
 `;
 
-class SignIn extends React.Component {
-  constructor() {
-    super();
+const SignIn = () => {
+  
+  const initialValues = {
+    email: "",
+    password: ""
+  };
 
-    this.state = {
-      email: "",
-      password: "",
-    };
+  const { values, handleChange } = useCustomForm({initialValues})
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try{
+      const { user } = await auth.signInWithEmailAndPassword(values.email, values.password);
+    }catch(error) {
+      console.log(error);
+    }
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-
-    this.setState({ email: "", password: "" });
-  };
-
-  handleChange = (e) => {
-    const { value, name } = e.target;
-
-    this.setState({ [name]: value });
-  };
-
-  render() {
     return (
-      <div>
+      <SignInWrapper>
         <Headline>Are you a user?</Headline>
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <InputForm
             name="email"
             type="email"
             label="Email"
-            value={this.state.email}
-            onChange={this.handleChange}
+            value={values.email}
+            onChange={handleChange}
           />
           <InputForm
             name="password"
             type="password"
             label="Password"
-            value={this.state.password}
-            onChange={this.handleChange}
+            value={values.password}
+            onChange={handleChange}
           />
           <CustomButton type="submit">Sign in</CustomButton>
           <SocialMediaBtns>
@@ -115,9 +113,8 @@ class SignIn extends React.Component {
           </SocialMediaBtns>
           <LinkBtn width="1px">Forgot a password?</LinkBtn>
         </Form>
-      </div>
+      </SignInWrapper>
     );
   }
-}
 
 export default SignIn;

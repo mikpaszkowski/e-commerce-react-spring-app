@@ -18,6 +18,7 @@ const Input = styled.input`
     border-bottom-width: 1px;
     border-bottom-style: solid;
     transition: border-color .1s ease-in;
+    background-color: ${props => props.transparent ? "transparent" : null};
 
     &:hover,
     &:focus{
@@ -64,6 +65,7 @@ const InputForm = ({handleChange, label, ...props}) => (
 <InputWrapper>
     <Input onChange={handleChange} {...props}/>
     {
+        console.log(props.value),
         label ? (<Label active={props.value.length}>{label}</Label>) : null
     }
 </InputWrapper>

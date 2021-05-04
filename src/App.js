@@ -7,7 +7,7 @@ import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { lightTheme } from "./styles/style";
 import { Switch, Route } from "react-router-dom";
 import styled from "styled-components";
-import { auth } from "./firebase/firebase.utils";
+import { auth, createUserProfile } from "./firebase/firebase.utils";
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: ${(props) => props.theme.fontFamiliy};
     color: ${(props) => props.theme.primaryFontColor};
     margin: 0;
-    padding: 2rem 10rem;
+    padding: 2rem 0;
   }
   *{
     box-sizing: border-box;
@@ -39,10 +39,22 @@ class App extends React.Component {
   unsubscribeAuth = null;
 
   componentDidMount(){
-    this.unsubscribeAuth = auth.onAuthStateChanged(user => {
-      this.setState({user: user});
+    this.unsubscribeAuth = auth.onAuthStateChanged(async userAuth => {
+      if(userAuth){
+        const userRef = await createUserProfile(userAuth);
 
-      console.log(user);
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            user: snapShot.id,
+            ...snapShot.data()
+          }, () => {
+            console.log(this.state)
+          }) 
+        })
+        console.log(this.state);
+      }else {
+        this.setState({ user: userAuth})
+      }
     })
   }
   componentWillUnmount() {
