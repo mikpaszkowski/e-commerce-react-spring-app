@@ -1,3 +1,19 @@
+# :shopping_cart: E-commerce website :shopping: 
+The main goal of this project is to take my Front-end skills to the higher level :chart_with_upwards_trend:. I've decided to create simple e-commerce shop with a help of a React.js. The user have a chance to buy some kind of clothes with a variety of cards where someone can find special kind of clothes. The user have an ability to sign in with with a Google/Facebook or tradionally :email: with an email and password. The styling of the components were made with a usage of styled-components library.
+
+## :wrench: Tech-stack
+* React (React Hooks, React Router) :atom_symbol:
+* Redux (Redux-logger) :trident:
+* Styled-components + SCSS :nail_care:	
+* Firebase (auth + db) :fire:
+
+## :clipboard: Main features :rocket:
+* creating reusable React  components with React hooks and Redux :arrows_counterclockwise:
+* thoughtful project architecture to improve maintainability, refactoring and understanding of the written code :thinking:
+* Firebase providing 3rd party authentication as Facebook, Google. Additional database (firestore).
+* Styling with a styled-components - creating reusable styles, themes applied to the components
+* (in progress) Payments provided by the Stripe.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
