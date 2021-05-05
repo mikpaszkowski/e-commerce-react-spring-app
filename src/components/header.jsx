@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import {ReactComponent as Logo } from "../assets/homeLogo.svg";
 import styled from "styled-components";
 import { auth } from "../firebase/firebase.utils";
+import { connect } from "react-redux";
 
 const HeaderWrapper = styled.div`
     height: 12rem;
@@ -90,4 +91,8 @@ const Header = ({ user }) => {
     )
 };
 
-export default Header;
+const mapStateToProps = state => ({
+    user: state.user.user
+})
+
+export default connect(mapStateToProps)(Header);

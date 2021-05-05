@@ -8,6 +8,9 @@ import { lightTheme } from "./styles/style";
 import { Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import { auth, createUserProfile } from "./firebase/firebase.utils";
+import { connect } from 'react-redux';
+import { setCurrentUser } from "./stores/user/userActions";
+
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -28,32 +31,26 @@ const CustomSwitch = styled(Switch)`
 `;
 
 class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      user: null
-    }
-  }
 
   unsubscribeAuth = null;
 
   componentDidMount(){
+
+    const { setCurrentUser } = this.props;
+
     this.unsubscribeAuth = auth.onAuthStateChanged(async userAuth => {
       if(userAuth){
         const userRef = await createUserProfile(userAuth);
 
         userRef.onSnapshot(snapShot => {
-          this.setState({
-            user: snapShot.id,
+          setCurrentUser({
+            id: snapShot.id,
             ...snapShot.data()
-          }, () => {
-            console.log(this.state)
           }) 
         })
         console.log(this.state);
       }else {
-        this.setState({ user: userAuth})
+        setCurrentUser(userAuth);
       }
     })
   }
@@ -64,10 +61,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <ThemeProvider theme={lightTheme}>
+        <ThemeProvider theme={lightTheme}>
         <React.Fragment>
           <GlobalStyle />
-          <Header user={this.state.user}/>
+          <Header/>
           <CustomSwitch>
             <Route exact path="/" component={HomePage} />
             <Route path="/shop" component={ShopListPage}/>
@@ -77,5 +74,9 @@ class App extends React.Component {
       </ThemeProvider>
     );
   }
-}
-export default App;
+};
+
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+})
+export default connect(null, mapDispatchToProps)(App);
