@@ -33,7 +33,7 @@ const HeaderMainTools = () => {
         <ToolsWrapper>
             <HeaderToolsItem iconName="search" icon={ SearchIcon }/>
             <HeaderToolsItem iconName="account" icon={ UserIcon }/>
-            <HeaderToolsItem iconName="cart" icon={ ShoppingCart }/>
+            <HeaderToolsItem iconName="cart" icon={ ShoppingCart } />
         </ToolsWrapper>
     );
 };

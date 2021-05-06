@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { toggleCartVisibility } from "../stores/cart/cartActions";
 
 
 const AccountItemWrapper = styled.div`
@@ -16,14 +18,19 @@ const IconName = styled.p`
     text-transform: uppercase;
 `;
 
-const HeaderToolsItem = ({icon, iconName}) => {
+const HeaderToolsItem = ({icon, iconName, toggleCartVisibility}) => {
     const TheIcon = icon;
     return(
-        <AccountItemWrapper>
+        <AccountItemWrapper onClick={ (iconName === "cart") ? toggleCartVisibility : null}>
             <TheIcon/>
             <IconName>{iconName}</IconName>
         </AccountItemWrapper>   
     )
 };
 
-export default HeaderToolsItem;
+const mapDispatchToProps = dispatch => ({
+    toggleCartVisibility: () => dispatch(toggleCartVisibility())
+})
+
+
+export default connect(null, mapDispatchToProps)(HeaderToolsItem);
