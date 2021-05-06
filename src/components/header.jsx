@@ -4,6 +4,7 @@ import {ReactComponent as Logo } from "../assets/homeLogo.svg";
 import styled from "styled-components";
 import { auth } from "../firebase/firebase.utils";
 import { connect } from "react-redux";
+import HeaderMainTools from "./header-main-tools";
 
 const HeaderWrapper = styled.div`
     height: 12rem;
@@ -87,6 +88,7 @@ const Header = ({ user }) => {
                     user ? <EmptyLink onClick={logOut}>Sign out</EmptyLink> : <OptionLink to="/auth">Sign in</OptionLink> 
                 }
             </Options>
+            <HeaderMainTools/>
         </HeaderWrapper>
     )
 };
