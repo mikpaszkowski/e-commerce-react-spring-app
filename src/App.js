@@ -5,7 +5,7 @@ import Header from "./components/header";
 import AuthenticationPage from "./pages/authentication-page";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { lightTheme } from "./styles/style";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { auth, createUserProfile } from "./firebase/firebase.utils";
 import { connect } from 'react-redux';
@@ -68,7 +68,7 @@ class App extends React.Component {
           <CustomSwitch>
             <Route exact path="/" component={HomePage} />
             <Route path="/shop" component={ShopListPage}/>
-            <Route path="/auth" component={AuthenticationPage}/>
+            <Route exact path="/auth" render={() => this.props.user ? (<Redirect to="/"/>) : (<AuthenticationPage/>)}/>
           </CustomSwitch>
         </React.Fragment>
       </ThemeProvider>
@@ -76,7 +76,11 @@ class App extends React.Component {
   }
 };
 
+const mapToStateProps = ({ user }) => ({
+  user: user.currUser
+})
+
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 })
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapToStateProps, mapDispatchToProps)(App);

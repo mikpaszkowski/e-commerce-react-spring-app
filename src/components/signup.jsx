@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import InputForm from "./input-form";
 import CustomButton from "./custom-button";
@@ -34,7 +34,7 @@ const SignUp = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if(values.password != values.confirmPassword){
+    if(values.password !== values.confirmPassword){
       alert("Passwords are not the same.");
       return;
     }
