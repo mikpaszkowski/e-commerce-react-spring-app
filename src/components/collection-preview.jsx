@@ -9,6 +9,7 @@ const CollectionPreviewWrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin-bottom: 10rem;
+
 `;
 
 const CollectionItemMainWrapper = styled.div`
@@ -16,6 +17,7 @@ const CollectionItemMainWrapper = styled.div`
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
+
 `;
 
 const CollectionPreview = ({title, items}) => (
