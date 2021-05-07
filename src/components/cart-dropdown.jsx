@@ -2,6 +2,7 @@ import React from "react";
 import CustomButton from "./custom-button";
 import CartItem from "./cart-dropdown-item";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 const CartWrapper = styled.div`
     position: absolute;
@@ -49,12 +50,24 @@ const TotalPriceInfo = styled.div`
     }
 `;
 
+const ListItemsWrapper = styled.div`
+    overflow: scroll;
+    overflow-x: hidden;
+    max-height: 40rem;
+`;
 
-const Cart = () => {
+
+const Cart = ({ cartItems }) => {
 
     return(
         <CartWrapper>
-            <CartItem/>
+            <ListItemsWrapper>
+            {
+                (cartItems.length === 0) ? null : cartItems.map(item => (
+                    <CartItem key={item.id} item={item}/>
+                ))
+            }
+            </ListItemsWrapper>
             <ShoppingInfoContainer>
                 <DeliveryInfo>
                     <span>delivery</span>
@@ -73,5 +86,9 @@ const Cart = () => {
     );
 };
 
+const mapStateToProps = ({cart: {cartItems}}) => ({
+    cartItems
+})
 
-export default Cart;
+
+export default connect(mapStateToProps)(Cart);

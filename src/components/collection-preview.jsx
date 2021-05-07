@@ -25,8 +25,8 @@ const CollectionPreview = ({title, items}) => (
         <Title>{title.toUpperCase()}</Title>
         <CollectionItemMainWrapper >
             {
-                items.filter((item, index) => index < 4).map(({id, ...item}) => (
-                    <CollectionItem key={id} {...item}/>
+                items.filter((item, index) => index < 4).map((item) => (
+                    <CollectionItem key={item.id} item={item}/>
                 ))
             }
         </CollectionItemMainWrapper>

@@ -50,6 +50,8 @@ const SignUp = () => {
       console.log(error);
     }
   }
+
+  const { email, name, surname, password, confirmPassword } = values;
   
   return (
     <SignUpWrapper>
@@ -59,7 +61,7 @@ const SignUp = () => {
           name="email"
           type="email"
           label="Email"
-          value={values.email}
+          value={email}
           transparent={true}
           onChange={handleChange}
         />
@@ -67,7 +69,7 @@ const SignUp = () => {
           name="name"
           type="name"
           label="Name"
-          value={values.name}
+          value={name}
           transparent={true}
           onChange={handleChange}
         />
@@ -75,7 +77,7 @@ const SignUp = () => {
           name="surname"
           type="surname"
           label="Surname"
-          value={values.surname}
+          value={surname}
           transparent={true}
           onChange={handleChange}
         />
@@ -83,7 +85,7 @@ const SignUp = () => {
           name="password"
           type="password"
           label="Password"
-          value={values.password}
+          value={password}
           transparent={true}
           onChange={handleChange}
         />
@@ -91,7 +93,7 @@ const SignUp = () => {
           name="confirmPassword"
           type="confirmPassword"
           label="Confirm password"
-          value={values.confirmPassword}
+          value={confirmPassword}
           transparent={true}
           onChange={handleChange}
         />
