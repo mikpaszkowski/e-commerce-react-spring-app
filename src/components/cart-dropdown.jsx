@@ -62,7 +62,7 @@ const QuantityNumberSign = styled.div`
 `;
 
 
-const Cart = ({ cartItems, hidden, toggleCartVisibility}) => {
+const Cart = ({ cartItems, toggleCartVisibility}) => {
 
     const handleClick = e => {
         if(node.current.contains(e.target)){

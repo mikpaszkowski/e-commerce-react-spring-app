@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { toggleCartVisibility } from "../stores/cart/cartActions";
 import QuantityNumber from "./quantity-number-sign";
+import { selectCartItemsCount } from "../stores/cart/cartSelectors";
+
 
 const AccountItemWrapper = styled.div`
   position: relative;
@@ -42,11 +44,8 @@ const mapDispatchToProps = (dispatch) => ({
   toggleCartVisibility: () => dispatch(toggleCartVisibility()),
 });
 
-const mapStateToProps = ({ cart: { cartItems } }) => ({
-  numberOfItems: cartItems.reduce(
-    (accumulator, item) => accumulator + item.quantity,
-    0
-  ),
+const mapStateToProps = (state) => ({
+  numberOfItems: selectCartItemsCount(state)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderToolsItem);
