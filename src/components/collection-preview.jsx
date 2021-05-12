@@ -9,7 +9,7 @@ const CollectionPreviewWrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin-bottom: 10rem;
-
+    padding: 0 4rem;
 `;
 
 const CollectionItemMainWrapper = styled.div`

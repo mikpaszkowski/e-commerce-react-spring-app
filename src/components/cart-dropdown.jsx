@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import CustomButton from "./custom-button";
 import CartItem from "./cart-dropdown-item";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { toggleCartVisibility } from "../stores/cart/cartActions";
 
 const CartWrapper = styled.div`
     position: absolute;
@@ -56,11 +57,32 @@ const ListItemsWrapper = styled.div`
     max-height: 40rem;
 `;
 
+const QuantityNumberSign = styled.div`
+    
+`;
 
-const Cart = ({ cartItems }) => {
+
+const Cart = ({ cartItems, hidden, toggleCartVisibility}) => {
+
+    const handleClick = e => {
+        if(node.current.contains(e.target)){
+            return;
+        }
+        toggleCartVisibility();
+    }
+
+    const node = useRef();
+
+    useEffect(() => {
+        document.addEventListener('click', handleClick);
+
+        return () =>{
+            document.removeEventListener('click', handleClick);
+        }
+    })
 
     return(
-        <CartWrapper>
+        <CartWrapper ref={node}>
             <ListItemsWrapper>
             {
                 (cartItems.length === 0) ? null : cartItems.map(item => (
@@ -86,9 +108,14 @@ const Cart = ({ cartItems }) => {
     );
 };
 
-const mapStateToProps = ({cart: {cartItems}}) => ({
-    cartItems
+const mapStateToProps = ({cart: {cartItems}, cart: { hidden }}) => ({
+    cartItems,
+    hidden
+});
+
+const mapDispatchToProps = dispatch => ({
+    toggleCartVisibility: () => dispatch(toggleCartVisibility())
 })
 
 
-export default connect(mapStateToProps)(Cart);
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

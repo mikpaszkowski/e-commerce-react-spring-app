@@ -84,10 +84,12 @@ const Header = ({ user, hidden }) => {
         <OptionLink to="/shop">BOYS</OptionLink>
         <OptionLink to="/shop">ABOUT US</OptionLink>
         <OptionLink to="/shop">SHOP</OptionLink>
-        {user ? (
-            <OptionLink to="/auth">Sign in</OptionLink>
-        ) : (
+        {
+        user ? (
+           
             <EmptyLink onClick={logOut}>Sign out</EmptyLink>
+        ) : (
+          <OptionLink to="/auth">Sign in</OptionLink>
         )}
       </Options>
       <HeaderMainTools />

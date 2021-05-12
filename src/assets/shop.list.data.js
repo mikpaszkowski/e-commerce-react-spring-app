@@ -6,38 +6,38 @@ const SHOP_LIST_DATA = [
       items: [
         {
           id: 1,
-          name: 'Brown Brim',
-          imageURL: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
+          name: 'Brownee',
+          imageURL: 'https://images.unsplash.com/photo-1579017331263-ef82f0bbc748?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=632&q=80',
           price: 25
         },
         {
           id: 2,
           name: 'Blue Beanie',
-          imageURL: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
+          imageURL: 'https://images.unsplash.com/photo-1595501818143-e06dc095bc5c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
           price: 18
         },
         {
           id: 3,
-          name: 'Brown Cowboy',
-          imageURL: 'https://i.ibb.co/QdJwgmp/brown-cowboy.png',
+          name: 'Classic Warmy',
+          imageURL: 'https://images.unsplash.com/photo-1500106162296-558fcec05ba1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80',
           price: 35
         },
         {
           id: 4,
-          name: 'Grey Brim',
-          imageURL: 'https://i.ibb.co/RjBLWxB/grey-brim.png',
+          name: 'Orange Cap',
+          imageURL: 'https://images.unsplash.com/photo-1601988404913-608c4e512ad4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=645&q=80',
           price: 25
         },
         {
           id: 5,
-          name: 'Green Beanie',
-          imageURL: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
+          name: 'Green Redeemer',
+          imageURL: 'https://images.unsplash.com/photo-1587301105020-a278b13d6b59?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=80',
           price: 18
         },
         {
           id: 6,
-          name: 'Palm Tree Cap',
-          imageURL: 'https://i.ibb.co/rKBDvJX/palm-tree-cap.png',
+          name: 'Yellow autumn',
+          imageURL: 'https://images.unsplash.com/photo-1577565177023-d0f29c354b69?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
           price: 14
         },
         {
@@ -54,9 +54,33 @@ const SHOP_LIST_DATA = [
         },
         {
           id: 9,
-          name: 'Blue Snapback',
-          imageURL: 'https://i.ibb.co/X2VJP2W/blue-snapback.png',
+          name: 'Creamy soft',
+          imageURL: 'https://images.unsplash.com/photo-1608345012913-7ab9bd63986f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
           price: 16
+        },
+        {
+          id: 10,
+          name: 'Blackiee',
+          imageURL: 'https://images.unsplash.com/photo-1584517900924-03df8d8369a4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
+          price: 20
+        },
+        {
+          id: 11,
+          name: 'Black cap',
+          imageURL: 'https://images.unsplash.com/photo-1597698075264-311fc053b439?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
+          price: 20
+        },
+        {
+          id: 12,
+          name: 'Grey alien',
+          imageURL: 'https://images.unsplash.com/photo-1607016570542-66b53868e7f2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
+          price: 20
+        },
+        {
+          id: 13,
+          name: 'Eco wear',
+          imageURL: 'https://images.unsplash.com/photo-1611330212663-4450d5c37a69?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
+          price: 20
         }
       ]
     },
