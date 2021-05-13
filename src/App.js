@@ -4,6 +4,7 @@ import ShopListPage from "./pages/shop-list-page";
 import Header from "./components/header";
 import AuthenticationPage from "./pages/authentication-page";
 import CartCheckout from "./components/cart-checkout";
+import CartCheckoutEmpty from "./components/checkout-empty"
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { lightTheme } from "./styles/style";
 import { Switch, Route, Redirect } from "react-router-dom";
@@ -11,6 +12,9 @@ import styled from "styled-components";
 import { auth, createUserProfile } from "./firebase/firebase.utils";
 import { connect } from 'react-redux';
 import { setCurrentUser } from "./stores/user/userActions";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "./stores/user/userSelector"
+import { selectCartItemsCount } from "./stores/cart/cartSelectors"
 
 
 const GlobalStyle = createGlobalStyle`
@@ -70,7 +74,7 @@ class App extends React.Component {
             <Route exact path="/" component={HomePage} />
             <Route path="/shop" component={ShopListPage}/>
             <Route exact path="/auth" render={() => this.props.user ? (<Redirect to="/"/>) : (<AuthenticationPage/>)}/>
-            <Route exact path="/checkout" component={CartCheckout}/>
+            <Route exact path="/checkout" render={()=> (this.props.numOfCartItems > 0) ? (<CartCheckout/>) : (<CartCheckoutEmpty/>)}/>
           </CustomSwitch>
         </React.Fragment>
       </ThemeProvider>
@@ -78,8 +82,9 @@ class App extends React.Component {
   }
 };
 
-const mapToStateProps = ({ user }) => ({
-  user: user.currUser
+const mapToStateProps = createStructuredSelector({
+  user: selectCurrentUser,
+  numOfCartItems: selectCartItemsCount
 })
 
 const mapDispatchToProps = dispatch => ({
