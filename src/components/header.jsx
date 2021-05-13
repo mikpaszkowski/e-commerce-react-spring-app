@@ -66,14 +66,14 @@ const EmptyLink = styled.div`
   }
 `;
 
-const Header = ({ user, hidden }) => {
+const Header = ({ currUser, hidden }) => {
   let history = useHistory();
   const logOut = () => {
     auth.signOut().then(() => {
       history.push("/");
     });
   };
-
+  console.log(currUser)
   return (
     <HeaderWrapper>
       <LinkContainer to="/">
@@ -88,8 +88,7 @@ const Header = ({ user, hidden }) => {
         <OptionLink to="/shop">ABOUT US</OptionLink>
         <OptionLink to="/shop">SHOP</OptionLink>
         {
-        user ? (
-           
+        currUser ? (
             <EmptyLink onClick={logOut}>Sign out</EmptyLink>
         ) : (
           <OptionLink to="/auth">Sign in</OptionLink>
@@ -106,7 +105,6 @@ const Header = ({ user, hidden }) => {
 const mapStateToProps = createStructuredSelector({
   currUser: selectCurrentUser,
   hidden: selectCartHidden
-
 });
 
 export default connect(mapStateToProps)(Header);
