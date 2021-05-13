@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { MdRemoveShoppingCart } from "react-icons/md"
+import { removeItem, addItem, decreaseNumOfItem } from "../stores/cart/cartActions";
+import { connect } from "react-redux";
 
 
 const CartCheckoutWrapper = styled.div`
@@ -14,11 +17,6 @@ const CartCheckoutWrapper = styled.div`
     & > div{
         width: 20rem;
         text-align: center;
-    }
-    & > select {
-        width: 10rem;
-        height: 
-        margin-left: 3rem;
     }
 `;
 
@@ -46,6 +44,18 @@ const Quantity = styled.div`
     display: block;
     font-weight: 400;
     font-size: 2.5rem;
+
+    & > span{
+         display: flex;
+         justify-content: center;
+        font-size: 3rem;
+       
+        & > div{
+            cursor: pointer;
+            font-size: 3rem;
+            margin: 0 2rem;
+        }
+    }
 `;
 
 const Price = styled.div`
@@ -56,11 +66,17 @@ const Price = styled.div`
     font-size: 2.5rem;
 `;
 
-const SelectQuantity = styled.select`
+const RemoveIcon = styled(MdRemoveShoppingCart)`
+    cursor: pointer;
+    width: 10rem;
+    font-size: 4rem;
 
+    &:hover{
+        color:#e74c3c;
+    }
 `;
 
-const CartCheckoutItem = ({ item }) => {
+const CartCheckoutItem = ({ item, removeItemFromCart, addItem, decreaseNumOfItem }) => {
     const { imageURL, id, name, price, quantity } = item;
     return (
         <CartCheckoutWrapper>
@@ -71,15 +87,25 @@ const CartCheckoutItem = ({ item }) => {
             </ItemDescription>
             <Quantity>
                 {
-                (quantity > 1) ? quantity : null
+                (quantity > 0) ? (
+                   <span>
+                    <div onClick={() => decreaseNumOfItem(item)}>&#10094;</div>
+                    {quantity}
+                    <div onClick={() => addItem(item)}>&#10095;</div>
+                   </span>
+                ) : null
                 }
             </Quantity>
             <Price>{price} USD</Price>
-             <SelectQuantity>
-                
-            </SelectQuantity>
+             <RemoveIcon onClick={() => removeItemFromCart(item)}/>
         </CartCheckoutWrapper>
     );       
 };
 
-export default CartCheckoutItem;
+const mapDispatchToProps = dispatch => ({
+    removeItemFromCart: item => dispatch(removeItem(item)),
+    addItem: item => dispatch(addItem(item)),
+    decreaseNumOfItem: item => dispatch(decreaseNumOfItem(item))
+})
+
+export default connect(null, mapDispatchToProps)(CartCheckoutItem);
