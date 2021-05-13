@@ -4,6 +4,9 @@ import CartItem from "./cart-dropdown-item";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { toggleCartVisibility } from "../stores/cart/cartActions";
+import { selectCartHidden, selectCartItems, SelectCartTotalPrice } from "../stores/cart/cartSelectors"
+import { createStructuredSelector } from "reselect";
+import { withRouter } from "react-router";
 
 const CartWrapper = styled.div`
     position: absolute;
@@ -12,6 +15,8 @@ const CartWrapper = styled.div`
     flex-direction: column;
     padding: 4rem;
     background-color: white;
+    border: 1px solid ${props => props.theme.secondaryColor};
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;;
     top: 12rem;
     right: 0;
     z-index: 10;
@@ -57,60 +62,76 @@ const ListItemsWrapper = styled.div`
     max-height: 40rem;
 `;
 
-const QuantityNumberSign = styled.div`
-    
+const EmptyMessageHeadline = styled.h1`
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 600;
 `;
 
 
-const Cart = ({ cartItems, toggleCartVisibility}) => {
+const Cart = ({ cartItems, hidden, toggleCartVisibility, totalPrice, history}) => {
+
+    const node = useRef();
 
     const handleClick = e => {
+        if(node.current == null) return;
         if(node.current.contains(e.target)){
             return;
         }
         toggleCartVisibility();
     }
-
-    const node = useRef();
-
     useEffect(() => {
-        document.addEventListener('click', handleClick);
+        if(!hidden){
+            document.addEventListener('click', handleClick);
+        }else{
+            document.removeEventListener('click', handleClick);
+        }
 
         return () =>{
             document.removeEventListener('click', handleClick);
         }
-    })
+    });
+
+    const redirectToCheckout = () => {
+        toggleCartVisibility();
+        history.push("/checkout")
+    }
 
     return(
         <CartWrapper ref={node}>
             <ListItemsWrapper>
             {
                 (cartItems.length === 0) ? null : cartItems.map(item => (
-                    <CartItem key={item.id} item={item}/>
+                    <CartItem key={item.id} item={item} imageWidth="13rem"/>
                 ))
             }
             </ListItemsWrapper>
-            <ShoppingInfoContainer>
+            {
+                cartItems.length ? 
+                <ShoppingInfoContainer>
                 <DeliveryInfo>
                     <span>delivery</span>
-                    <span>From 0.00 USD</span>
+                    <span>From 100.00 USD</span>
                 </DeliveryInfo>
                 <TotalPriceInfo>
                     <span>
                         total price 
                     <span>including vat</span>
                     </span>
-                    <span>32.92 USD</span>
+                    <span>{totalPrice} USD</span>
                 </TotalPriceInfo>
-                <CustomButton>See cart</CustomButton>
+                <CustomButton onClick={redirectToCheckout}>See cart</CustomButton>
             </ShoppingInfoContainer>
+            : <EmptyMessageHeadline>Your cart is empty</EmptyMessageHeadline>
+            }
         </CartWrapper>
     );
 };
 
-const mapStateToProps = ({cart: {cartItems}, cart: { hidden }}) => ({
-    cartItems,
-    hidden
+const mapStateToProps = createStructuredSelector({
+    cartItems: selectCartItems,
+    totalPrice: SelectCartTotalPrice,
+    hidden: selectCartHidden
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -118,4 +139,4 @@ const mapDispatchToProps = dispatch => ({
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Cart));

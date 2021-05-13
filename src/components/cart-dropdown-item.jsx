@@ -43,11 +43,11 @@ display: grid;
     }
 `;
 
-const CartItem = ({ item }) => {
+const CartItem = ({ item, imageWidth }) => {
   const { imageURL, name, price, quantity } = item;
   return (
     <CartItemWrapper>
-      <Image width="13rem" src={imageURL} />
+      <Image width={imageWidth} src={imageURL} />
       <ItemName>
       <span>
         {name}

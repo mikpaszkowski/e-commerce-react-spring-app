@@ -3,6 +3,7 @@ import HomePage from "./pages/homepage";
 import ShopListPage from "./pages/shop-list-page";
 import Header from "./components/header";
 import AuthenticationPage from "./pages/authentication-page";
+import CartCheckout from "./components/cart-checkout";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { lightTheme } from "./styles/style";
 import { Switch, Route, Redirect } from "react-router-dom";
@@ -69,6 +70,7 @@ class App extends React.Component {
             <Route exact path="/" component={HomePage} />
             <Route path="/shop" component={ShopListPage}/>
             <Route exact path="/auth" render={() => this.props.user ? (<Redirect to="/"/>) : (<AuthenticationPage/>)}/>
+            <Route exact path="/checkout" component={CartCheckout}/>
           </CustomSwitch>
         </React.Fragment>
       </ThemeProvider>

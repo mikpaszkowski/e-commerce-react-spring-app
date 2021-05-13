@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { toggleCartVisibility } from "../stores/cart/cartActions";
 import QuantityNumber from "./quantity-number-sign";
 import { selectCartItemsCount } from "../stores/cart/cartSelectors";
+import { createStructuredSelector } from "reselect";
 
 
 const AccountItemWrapper = styled.div`
@@ -44,8 +45,8 @@ const mapDispatchToProps = (dispatch) => ({
   toggleCartVisibility: () => dispatch(toggleCartVisibility()),
 });
 
-const mapStateToProps = (state) => ({
-  numberOfItems: selectCartItemsCount(state)
+const mapStateToProps = createStructuredSelector({
+  numberOfItems: selectCartItemsCount
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderToolsItem);
