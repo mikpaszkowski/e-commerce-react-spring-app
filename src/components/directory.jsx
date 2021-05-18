@@ -2,6 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import MenuDashboardItem from "./menu-dashboard-item";
 import SECTIONS_DATA from "../assets/sections.list";
+import { connect } from "react-redux";
+import { selectDirectorySections } from "../stores/directory/directorySelector"
+import { createStructuredSelector } from "reselect";
+
 
 const DirectoryWrapper = styled.div`
   width: 100%;
@@ -12,26 +16,21 @@ const DirectoryWrapper = styled.div`
   margin-top: 15rem;
 `;
 
-class Directory extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-        sections: SECTIONS_DATA
-    }
-  };
-
-  render() {
+const Directory = ({ sections }) => {
+  
      return (
         <DirectoryWrapper>
           {
-              this.state.sections.map(({id, ...sectionProps}) => (
+              sections.map(({id, ...sectionProps}) => (
                   <MenuDashboardItem key={id} {...sectionProps}/>
               ))}
         </DirectoryWrapper>
      )
-  }
-}
+};
+
+const mapStateToProps = createStructuredSelector({
+  sections: selectDirectorySections
+})
 
 
-export default Directory;
+export default connect(mapStateToProps)(Directory);

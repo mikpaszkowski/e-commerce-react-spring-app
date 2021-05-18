@@ -1,37 +1,22 @@
 import React from "react";
-import SHOP_LIST_DATA from "../assets/shop.list.data";
-import CollectionPreview from "../components/collection-preview";
+import CollectionOverview from "../components/collection-overview";
 import styled from "styled-components";
+import { Route } from "react-router-dom";
+import CollectionPage from "./collection-page";
 
 const ShopListPageContainer = styled.div`
   display: block;
   margin-top: 15rem;
 `;
 
-
-class ShopListPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      collections: SHOP_LIST_DATA,
-    };
-  }
-
-
-  render() {
-    const {collections} = this.state;
+const ShopListPage = ({ match }) => {
+  console.log(match)
       return (
         <ShopListPageContainer>
-          {
-            collections.map(({id, ...collectionProps}) => (
-              <CollectionPreview key={id} {...collectionProps}/>
-            ))
-          }
-        </ShopListPageContainer>
+          <Route exact path={`${match.path}`} component={CollectionOverview}/>
+          <Route exact path={`${match.path}/:id`} component={CollectionPage}/>
+        </ShopListPageContainer> 
       )
   }
-}
-
 
 export default ShopListPage;

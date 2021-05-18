@@ -1,21 +1,20 @@
 import React from "react";
-import HomePage from "./pages/homepage";
+import HomePage from "./pages/home-page";
 import ShopListPage from "./pages/shop-list-page";
 import Header from "./components/header";
 import AuthenticationPage from "./pages/authentication-page";
 import CartCheckout from "./components/cart-checkout";
-import CartCheckoutEmpty from "./components/checkout-empty"
+import CartCheckoutEmpty from "./components/checkout-empty";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { lightTheme } from "./styles/style";
 import { Switch, Route, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { auth, createUserProfile } from "./firebase/firebase.utils";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { setCurrentUser } from "./stores/user/userActions";
 import { createStructuredSelector } from "reselect";
-import { selectCurrentUser } from "./stores/user/userSelector"
-import { selectCartItemsCount } from "./stores/cart/cartSelectors"
-
+import { selectCurrentUser } from "./stores/user/userSelector";
+import { selectCartItemsCount } from "./stores/cart/cartSelectors";
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -36,58 +35,71 @@ const CustomSwitch = styled(Switch)`
 `;
 
 class App extends React.Component {
-
   unsubscribeAuth = null;
 
-  componentDidMount(){
-
+  componentDidMount() {
     const { setCurrentUser } = this.props;
 
-    this.unsubscribeAuth = auth.onAuthStateChanged(async userAuth => {
-      if(userAuth){
+    this.unsubscribeAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
         const userRef = await createUserProfile(userAuth);
 
-        userRef.onSnapshot(snapShot => {
+        userRef.onSnapshot((snapShot) => {
           setCurrentUser({
             id: snapShot.id,
-            ...snapShot.data()
-          }) 
-        })
+            ...snapShot.data(),
+          });
+        });
         console.log(this.state);
-      }else {
+      } else {
         setCurrentUser(userAuth);
       }
-    })
+    });
   }
   componentWillUnmount() {
     this.unsubscribeAuth();
   }
 
-
   render() {
     return (
-        <ThemeProvider theme={lightTheme}>
+      <ThemeProvider theme={lightTheme}>
         <React.Fragment>
           <GlobalStyle />
-          <Header/>
+          <Header />
           <CustomSwitch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/shop" component={ShopListPage}/>
-            <Route exact path="/auth" render={() => this.props.user ? (<Redirect to="/"/>) : (<AuthenticationPage/>)}/>
-            <Route exact path="/checkout" render={()=> (this.props.numOfCartItems > 0) ? (<CartCheckout/>) : (<CartCheckoutEmpty/>)}/>
+            <Route path="/shop" component={ShopListPage} />
+            <Route
+              exact
+              path="/auth"
+              render={() =>
+                this.props.user ? <Redirect to="/" /> : <AuthenticationPage />
+              }
+            />
+            <Route
+              exact
+              path="/checkout"
+              render={() =>
+                this.props.numOfCartItems > 0 ? (
+                  <CartCheckout />
+                ) : (
+                  <CartCheckoutEmpty />
+                )
+              }
+            />
           </CustomSwitch>
         </React.Fragment>
       </ThemeProvider>
     );
   }
-};
+}
 
 const mapToStateProps = createStructuredSelector({
   user: selectCurrentUser,
-  numOfCartItems: selectCartItemsCount
-})
+  numOfCartItems: selectCartItemsCount,
+});
 
-const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
-})
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
 export default connect(mapToStateProps, mapDispatchToProps)(App);

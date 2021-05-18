@@ -20,12 +20,17 @@ const CollectionItemMainWrapper = styled.div`
 
 `;
 
-const CollectionPreview = ({title, items}) => (
+const CollectionPreview = ({title, items, numOfItems}) => (
     <CollectionPreviewWrapper>
         <Title>{title.toUpperCase()}</Title>
         <CollectionItemMainWrapper >
             {
-                items.filter((item, index) => index < 4).map((item) => (
+                items.filter((item, index) => {
+                    if(numOfItems){
+                        return index < numOfItems;
+                    }
+                    return index;
+                }).map((item) => (
                     <CollectionItem key={item.id} item={item}/>
                 ))
             }
