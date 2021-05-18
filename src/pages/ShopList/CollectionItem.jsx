@@ -1,9 +1,9 @@
 import React from "react";
-import { BackgroundImage } from "../styles/BackgroundImage";
+import { BackgroundImage } from "../../styles/BackgroundImage";
 import styled, { keyframes } from "styled-components";
-import CustomButton from "../components/custom-button";
+import CustomButton from "../../components/CustomButton";
 import { connect } from "react-redux";
-import { addItem } from "../stores/cart/cartActions";
+import { addItem } from "../../stores/cart/cartActions";
 
 const slideIn = keyframes`
     from{

@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { toggleCartVisibility } from "../stores/cart/cartActions";
-import QuantityNumber from "./quantity-number-sign";
-import { selectCartItemsCount } from "../stores/cart/cartSelectors";
+import { toggleCartVisibility } from "../../stores/cart/cartActions";
+import QuantityNumber from "../QuantityNumberSign";
+import { selectCartItemsCount } from "../../stores/cart/cartSelectors";
 import { createStructuredSelector } from "reselect";
 
 

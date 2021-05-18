@@ -1,10 +1,10 @@
 import React from "react";
-import HomePage from "./pages/home-page";
-import ShopListPage from "./pages/shop-list-page";
-import Header from "./components/header";
-import AuthenticationPage from "./pages/authentication-page";
-import CartCheckout from "./components/cart-checkout";
-import CartCheckoutEmpty from "./components/checkout-empty";
+import HomePage from "./pages/Home/HomePage";
+import ShopListPage from "./pages/ShopList/ShopListPage";
+import Header from "./components/Header/Header";
+import AuthenticationPage from "./pages/Authentication/AuthenticationPage";
+import CartCheckout from "./pages/Cart/CartCheckout";
+import CartCheckoutEmpty from "./pages/Cart/CheckoutEmpty";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { lightTheme } from "./styles/style";
 import { Switch, Route, Redirect } from "react-router-dom";

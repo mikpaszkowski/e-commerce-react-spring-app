@@ -1,13 +1,13 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import { ReactComponent as Logo } from "../assets/homeLogo.svg";
+import { ReactComponent as Logo } from "../../assets/homeLogo.svg";
 import styled from "styled-components";
-import { auth } from "../firebase/firebase.utils";
+import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
-import HeaderMainTools from "./header-main-tools";
-import CartDropdown from "./cart-dropdown";
-import { selectCurrentUser } from "../stores/user/userSelector";
-import { selectCartHidden } from "../stores/cart/cartSelectors";
+import HeaderMainTools from "./HeaderTools";
+import CartDropdown from "./CartDropdown";
+import { selectCurrentUser } from "../../stores/user/userSelector";
+import { selectCartHidden } from "../../stores/cart/cartSelectors";
 import { createStructuredSelector } from "reselect";
 
 const HeaderWrapper = styled.div`

@@ -1,6 +1,6 @@
 import React from "react";
-import SignIn from "../components/signin";
-import SignUp from "../components/signup";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 import styled from 'styled-components';
 
 const AuthWrapper = styled.div`

@@ -1,7 +1,7 @@
 import React from "react";
-import CollectionItem from "./collection-item";
+import CollectionItem from "./CollectionItem";
 import styled from "styled-components";
-import { Title } from "../styles/Title";
+import { Title } from "../../styles/Title";
 
 const CollectionPreviewWrapper = styled.div`
     position: relative;

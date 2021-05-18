@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { MdRemoveShoppingCart } from "react-icons/md"
-import { removeItem, addItem, decreaseNumOfItem } from "../stores/cart/cartActions";
+import { removeItem, addItem, decreaseNumOfItem } from "../../stores/cart/cartActions";
 import { connect } from "react-redux";
 
 

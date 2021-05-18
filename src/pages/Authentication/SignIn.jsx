@@ -1,18 +1,18 @@
 import React from "react";
-import InputForm from "./input-form";
-import { auth } from "../firebase/firebase.utils";
+import InputForm from "../../components/InputForm";
+import { auth } from "../../firebase/firebase.utils";
 import styled from "styled-components";
-import LinkBtn from "../styles/LinkButton";
-import CustomButton from "./custom-button";
-import Form from "../styles/Form";
-import useCustomForm from "../custom-hooks/useCustomForm"
+import LinkBtn from "../../styles/LinkButton";
+import CustomButton from "../../components/CustomButton";
+import Form from "../../styles/Form";
+import useCustomForm from "../../custom-hooks/useCustomForm"
 import {
   signInWithGoogle,
   signInWithFacebook,
-} from "../firebase/firebase.utils";
+} from "../../firebase/firebase.utils";
 import { AiFillFacebook } from "react-icons/ai";
 import { AiOutlineGoogle } from "react-icons/ai";
-import colors from "../styles/colors";
+import colors from "../../styles/colors";
 
 const SignInWrapper = styled.div`
   width: 50%;

@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { selectCartItems, selectCartItemsCount } from "../stores/cart/cartSelectors";
+import { selectCartItems, selectCartItemsCount } from "../../stores/cart/cartSelectors";
 import { createStructuredSelector } from "reselect";
-import CartCheckoutItem from "./cart-checkout-item";
+import CartCheckoutItem from "./CartCheckoutItem";
 
 const CheckoutWrapper = styled.div`
     width: 100%;

@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
-import CustomButton from "./custom-button";
-import CartItem from "./cart-dropdown-item";
+import CustomButton from "../CustomButton";
+import CartItem from "./CartDropdownItem";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { toggleCartVisibility } from "../stores/cart/cartActions";
-import { selectCartHidden, selectCartItems, SelectCartTotalPrice } from "../stores/cart/cartSelectors"
+import { toggleCartVisibility } from "../../stores/cart/cartActions";
+import { selectCartHidden, selectCartItems, SelectCartTotalPrice } from "../../stores/cart/cartSelectors"
 import { createStructuredSelector } from "reselect";
 import { withRouter } from "react-router";
 

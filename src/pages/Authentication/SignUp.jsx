@@ -1,12 +1,12 @@
 import React from "react";
 
-import InputForm from "./input-form";
-import CustomButton from "./custom-button";
-import Form from "../styles/Form";
+import InputForm from "../../components/InputForm";
+import CustomButton from "../../components/CustomButton";
+import Form from "../../styles/Form";
 import styled from "styled-components";
 
-import { auth, createUserProfile } from "../firebase/firebase.utils";
-import useCustomForm from "../custom-hooks/useCustomForm";
+import { auth, createUserProfile } from "../../firebase/firebase.utils";
+import useCustomForm from "../../custom-hooks/useCustomForm";
 
 const SignUpWrapper = styled.div`
   width: 50%;

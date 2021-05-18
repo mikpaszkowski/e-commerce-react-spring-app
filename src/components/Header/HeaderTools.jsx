@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import HeaderToolsItem from "./header-tools-item";
+import HeaderToolsItem from "./HeaderToolsItem";
 import { FiSearch, FiUser, FiShoppingCart } from "react-icons/fi";
 
 const ToolsWrapper = styled.div`

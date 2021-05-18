@@ -1,8 +1,8 @@
 import React from "react";
-import CollectionOverview from "../components/collection-overview";
+import CollectionOverview from "./CollectionOverview";
 import styled from "styled-components";
 import { Route } from "react-router-dom";
-import CollectionPage from "./collection-page";
+import CollectionPage from "./CollectionPage";
 
 const ShopListPageContainer = styled.div`
   display: block;
@@ -10,7 +10,6 @@ const ShopListPageContainer = styled.div`
 `;
 
 const ShopListPage = ({ match }) => {
-  console.log(match)
       return (
         <ShopListPageContainer>
           <Route exact path={`${match.path}`} component={CollectionOverview}/>

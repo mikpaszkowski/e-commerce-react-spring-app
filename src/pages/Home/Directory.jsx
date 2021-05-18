@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import MenuDashboardItem from "./menu-dashboard-item";
-import SECTIONS_DATA from "../assets/sections.list";
+import MenuDashboardItem from "./MenuDashboardItem";
+import SECTIONS_DATA from "../../assets/sections.list";
 import { connect } from "react-redux";
-import { selectDirectorySections } from "../stores/directory/directorySelector"
+import { selectDirectorySections } from "../../stores/directory/directorySelector"
 import { createStructuredSelector } from "reselect";
 
 

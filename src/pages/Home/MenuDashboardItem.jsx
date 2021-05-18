@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
-import { BackgroundImage } from "../styles/BackgroundImage";
+import { BackgroundImage } from "../../styles/BackgroundImage";
 
 const MenuItemWrapper = styled.div`
   position: relative;
