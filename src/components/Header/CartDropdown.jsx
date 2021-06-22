@@ -4,7 +4,7 @@ import CartItem from "./CartDropdownItem";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { toggleCartVisibility } from "../../stores/cart/cartActions";
-import { selectCartHidden, selectCartItems, SelectCartTotalPrice } from "../../stores/cart/cartSelectors"
+import { selectCartHidden, selectCartItems, selectCartTotalPrice } from "../../stores/cart/cartSelectors"
 import { createStructuredSelector } from "reselect";
 import { withRouter } from "react-router";
 
@@ -130,7 +130,7 @@ const Cart = ({ cartItems, hidden, toggleCartVisibility, totalPrice, history}) =
 
 const mapStateToProps = createStructuredSelector({
     cartItems: selectCartItems,
-    totalPrice: SelectCartTotalPrice,
+    totalPrice: selectCartTotalPrice,
     hidden: selectCartHidden
 });
 

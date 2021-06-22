@@ -1,4 +1,4 @@
-import CartItem from "../components/Header/CartDropdownItem";
+
 
 export const addItemToCart = (cartItems, currCartItemToAdd) => {
   const existingCartItem = cartItems.find(

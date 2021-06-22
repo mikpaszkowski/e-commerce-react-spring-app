@@ -13,7 +13,6 @@ const AuthWrapper = styled.div`
 
 
 const AuthenticationPage = () => (
-
        <AuthWrapper>
               <SignIn/>
               <SignUp/>

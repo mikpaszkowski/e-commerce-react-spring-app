@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { selectCartItems, selectCartItemsCount } from "../../stores/cart/cartSelectors";
+import { selectCartItems, selectCartItemsCount, selectCartTotalPrice } from "../../stores/cart/cartSelectors";
 import { createStructuredSelector } from "reselect";
 import CartCheckoutItem from "./CartCheckoutItem";
+import StripeCheckoutButton from "../../components/StripeBtn";
 
 const CheckoutWrapper = styled.div`
     width: 100%;
@@ -37,7 +38,7 @@ const CartItemsHeader = styled.div`
     }
 `;
 
-const CartCheckout = ({ cartItems, numberOfItems }) =>{
+const CartCheckout = ({ cartItems, numberOfItems, total }) =>{
     return(
         <CheckoutWrapper>
             <CartHeadlineWrapper>
@@ -58,13 +59,16 @@ const CartCheckout = ({ cartItems, numberOfItems }) =>{
                     <CartCheckoutItem key={item.id} item={item} />
                 ))
             }
+            <div>TOTAL: {total}</div>
+            <StripeCheckoutButton price={total}/>
         </CheckoutWrapper>
     )   
 };
 
 const mapStateToProps = createStructuredSelector({
     cartItems: selectCartItems,
-    numberOfItems: selectCartItemsCount
+    numberOfItems: selectCartItemsCount,
+    total: selectCartTotalPrice
 });
 
 
