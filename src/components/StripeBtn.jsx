@@ -15,7 +15,7 @@ const StripeCheckoutButton = ({ price }) => {
         .then(res => {
             alert("Payment success");
         })
-        .catach(err => {
+        .catch(err => {
             alert("Payment failed");
         })
     }
@@ -27,7 +27,7 @@ const StripeCheckoutButton = ({ price }) => {
             name="Shopify"
             billingAddress
             shippingAddress 
-            image="https://svgshare.com/i/CUz/svg"
+            image="https://svgshare.com/i/CUz.svg"
             description={`Your total is ${price}`}
             panelLabel="Pay Now"
             token={onToken}
