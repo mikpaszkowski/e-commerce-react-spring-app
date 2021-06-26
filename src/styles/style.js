@@ -1,19 +1,6 @@
-import { DefaultTheme } from "styled-components";
 
-declare module "styled-components" {
-    export interface DefaultTheme{
-        primaryColor: string;
-        secondaryColor: string;
-        primaryFontColor: string,
-        secondaryFontColor: string,
-        btnDefaultColor: string,
-        hoverDeafultBtnColor: string,
-        inputBorderColor: string,
-        fontFamily: string
-    }
-}
 
-export const darkTheme: DefaultTheme = {
+export const darkTheme = {
     primaryColor: "#555555",
     secondaryColor: "#bdc3c7",
     primaryFontColor: "#ffffff",
@@ -25,7 +12,7 @@ export const darkTheme: DefaultTheme = {
 };
 
 
-export const lightTheme: DefaultTheme = {
+export const lightTheme = {
     primaryColor: "#ffffff",
     secondaryColor: "#f3f3f5",
     primaryFontColor: "#353535",
