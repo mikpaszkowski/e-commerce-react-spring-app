@@ -35,7 +35,7 @@ const CustomSwitch = styled(Switch)`
 `;
 
 class App extends React.Component {
-  unsubscribeAuth = null;
+  unsubscribeAuth = null; 
 
   componentDidMount() {
     const { setCurrentUser } = this.props;
@@ -43,17 +43,14 @@ class App extends React.Component {
     this.unsubscribeAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfile(userAuth);
-
         userRef.onSnapshot((snapShot) => {
           setCurrentUser({
             id: snapShot.id,
             ...snapShot.data(),
           });
         });
-        console.log(this.state);
-      } else {
-        setCurrentUser(userAuth);
       }
+      setCurrentUser(userAuth);
     });
   }
   componentWillUnmount() {
@@ -94,7 +91,7 @@ class App extends React.Component {
   }
 }
 
-const mapToStateProps = createStructuredSelector({
+const mapStateToProps = createStructuredSelector({
   user: selectCurrentUser,
   numOfCartItems: selectCartItemsCount,
 });
@@ -102,4 +99,4 @@ const mapToStateProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
-export default connect(mapToStateProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

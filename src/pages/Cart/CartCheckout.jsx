@@ -42,6 +42,7 @@ const TotalPrice = styled.h1`
     font-size: 4rem;
     font-weight: 400;
     text-align: right;
+    border-top: 1px solid ${props => props.theme.secondaryFontColor};
 `;
 
 const CartCheckout = ({ cartItems, numberOfItems, total }) =>{

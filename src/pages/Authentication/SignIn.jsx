@@ -12,6 +12,8 @@ import {
 } from "../../firebase/firebase.utils";
 import { AiFillFacebook } from "react-icons/ai";
 import { AiOutlineGoogle } from "react-icons/ai";
+import { setCurrentUser } from "../../stores/user/userActions";
+import {connect} from "react-redux";
 import colors from "../../styles/colors";
 
 const SignInWrapper = styled.div`
@@ -63,7 +65,7 @@ const FacebookBtn = styled(CustomButton)`
     }
 `;
 
-const SignIn = () => {
+const SignIn = ({setCurrentUser}) => {
   
   const initialValues = {
     email: "",
@@ -74,9 +76,10 @@ const SignIn = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    
     try{
-      const { user } = await auth.signInWithEmailAndPassword(values.email, values.password);
+     const {user } = await auth.signInWithEmailAndPassword(values.email, values.password);
+     setCurrentUser(user);
     }catch(error) {
       console.log(error);
     }
@@ -100,7 +103,7 @@ const SignIn = () => {
             value={values.password}
             onChange={handleChange}
           />
-          <CustomButton type="submit">Sign in</CustomButton>
+          <CustomButton onClick={handleSubmit}>Sign in</CustomButton>
           <SocialMediaBtns>
             <GoogleBtn onClick={signInWithGoogle}>
               <GoogleIcon/>
@@ -117,4 +120,8 @@ const SignIn = () => {
     );
   }
 
-export default SignIn;
+  const mapDispatchToProps = (dispatch) => ({
+    setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+  });
+
+export default connect(null, mapDispatchToProps)(SignIn);

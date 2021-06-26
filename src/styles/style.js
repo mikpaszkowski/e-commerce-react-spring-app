@@ -1,5 +1,4 @@
 
-
 export const darkTheme = {
     primaryColor: "#555555",
     secondaryColor: "#bdc3c7",

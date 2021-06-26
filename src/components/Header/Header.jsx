@@ -73,7 +73,6 @@ const Header = ({ currUser, hidden }) => {
       history.push("/");
     });
   };
-  console.log(currUser)
   return (
     <HeaderWrapper>
       <LinkContainer to="/">
