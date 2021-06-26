@@ -5,11 +5,10 @@ import lombok.Data;
 @Data
 public class ChargeRequest {
 
-    private String description;
     private int amount;
     private Currency currency;
-    private String stripeEmail;
-    private String stripeToken;
+    private String email;
+    private Token token;
 
     public enum Currency{
         EUR, USD;

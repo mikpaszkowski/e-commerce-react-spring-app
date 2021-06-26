@@ -38,6 +38,12 @@ const CartItemsHeader = styled.div`
     }
 `;
 
+const TotalPrice = styled.h1`
+    font-size: 4rem;
+    font-weight: 400;
+    text-align: right;
+`;
+
 const CartCheckout = ({ cartItems, numberOfItems, total }) =>{
     return(
         <CheckoutWrapper>
@@ -59,7 +65,7 @@ const CartCheckout = ({ cartItems, numberOfItems, total }) =>{
                     <CartCheckoutItem key={item.id} item={item} />
                 ))
             }
-            <div>TOTAL: {total}</div>
+            <TotalPrice>TOTAL: ${total}</TotalPrice>
             <StripeCheckoutButton price={total}/>
         </CheckoutWrapper>
     )   
